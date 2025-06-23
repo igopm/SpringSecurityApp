@@ -1,3 +1,6 @@
+-- docker setup mysql
+-- docker pull mysql
+-- docker run --name root -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
 -- Table: users
 CREATE TABLE users (
   id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -26,10 +29,21 @@ CREATE TABLE user_roles (
   ENGINE = InnoDB;
 
 -- Insert data
-
-INSERT INTO users VALUES (1, 'west', '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG');
-
 INSERT INTO roles VALUES (1, 'ROLE_USER');
 INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
 
-INSERT INTO user_roles VALUES (1, 2);
+INSERT INTO user_roles VALUES (3, 2);
+
+DELETE FROM users as us
+       WHERE us.id = 2;
+select * from users;
+select * from roles;
+select * from user_roles;
+
+
+DELETE FROM roles WHERE id = 2;
+
+DELETE FROM users WHERE id = 2;
+DELETE FROM user_roles WHERE user_id = 2;
+
+drop table roles;
